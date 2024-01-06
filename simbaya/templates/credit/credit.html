@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/hyper.css'%}">
+
+<div class="dash-content">
+    <div class="overview">
+        <div class="title">
+            <i class="uil uil-tachometer-fast-alt"></i>
+            <span class="text">Vente par jours</span>
+        </div>
+    </div>
+
+    <div class="containers">
+        <div class="scrollable-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vehicule</th>
+                        <th>Credit non payé</th>
+                        <th>Voir Crédits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vente in datap %}
+                        {% if vente.total_vente != 0 %}
+                            <tr>
+                                <td>{{ vente.Vehicule }}</td>
+                                <td>{{ vente.total_vente }} GNF</td>
+                                <!-- Lien pour voir les crédits associés au véhicule -->
+                                <td><a class='btn btn-info' href="{% url 'list_credit' vente.Vehicule %}">👀</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

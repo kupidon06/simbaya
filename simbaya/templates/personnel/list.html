@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<!-- Linking external CSS stylesheets -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/hyper.css'%}">
+
+<div class="dash-content">
+    <div class="overview">
+        <!-- Dashboard title -->
+        <div class="title">
+            <i class="uil uil-tachometer-fast-alt"></i>
+            <span class="text">Liste Du Personnel</span>
+        </div>
+
+        <!-- Search form -->
+        <form method="GET" action="{% url 'personnels' %}">
+            <input type="text" name="q" placeholder="Rechercher...">
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="scrollable-table">
+            <!-- Personnel table -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Telephone</th>
+                        <th>email</th>
+                        <th>situation matrimoniale</th>
+                        <th>poste</th>
+                        <th>regime</th>
+                        <th>imprimer</th>
+                        <th>Modifier</th>
+                        <th>suprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through personnel data -->
+                    {% for i in datap %}
+                        <tr>
+                            <th>{{i.id}}</th>
+                            <th>{{i.Nom}}</th>
+                            <th>{{i.Prenom}}</th>
+                            <th>{{i.Telephone}}</th>
+                            <th>{{i.mail}}</th>
+                            <th>{{i.situation}}</th>
+                            <th>{{i.poste}}</th>
+                            <th>{{i.regime}}</th>
+                            <th><a class='btn btn-success' href="{% url 'generer_salaire' i.id %}">salaire</a></th>
+                            <th><a class='btn btn-info' href="{% url 'update' i.id %}">Modifier</a></th>
+                            <th><a class='btn btn-danger' href="{% url 'remove' i.id %}">suprimer</a></th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
