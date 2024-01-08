@@ -8,7 +8,7 @@ from django.db.models import Sum
 
 def produite(request):
     # Vue pour ajouter de nouvelles ventes
-    form = productions()  # Assurez-vous d'utiliser le nom correct du formulaire
+    form = productions()  
     if request.method == 'POST':
         form = productions(request.POST)
         if form.is_valid():
