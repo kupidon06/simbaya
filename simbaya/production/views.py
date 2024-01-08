@@ -1,7 +1,7 @@
 # views.py
 from django.shortcuts import render, redirect,reverse
 from django.http import HttpResponse
-from .forms import productions  # Assurez-vous d'utiliser le nom correct du formulaire
+from .forms import productions  
 from .models import production
 from django.db.models import Sum
 
